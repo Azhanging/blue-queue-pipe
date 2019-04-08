@@ -1,0 +1,19 @@
+{
+  "name": "blue-queue",
+  "version": "1.0.0",
+  "description": "队列处理",
+  "main": "src/blue-queue.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azhanging/blue-queue.git"
+  },
+  "author": "Blue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Azhanging/blue-queue/issues"
+  },
+  "homepage": "https://github.com/Azhanging/blue-queue#readme"
+}

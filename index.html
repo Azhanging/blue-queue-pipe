@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="src/blue-queue.js"></script>
+  </head>
+  <body>
+    <script>
+      var blueQueue = new BlueQueue({
+        data: {
+          status: false
+        },
+        methods: {
+          setStatus: function (status) {
+            this.data.status = status;
+            blueQueue.enqueue(function () {
+              console.log(4);
+            });
+          }
+        },
+        enqueued: function () {
+          if (this.data.status === true) {
+            this.run();
+          }
+        }
+      });
+
+      setTimeout(function () {
+        blueQueue.useMethod('setStatus', [true]);
+      }, 0);
+
+      blueQueue.enqueue(function () {
+        console.log(1);
+      });
+
+      blueQueue.enqueue(function () {
+        console.log(2);
+      });
+
+      blueQueue.enqueue(function () {
+        console.log(3);
+      });
+
+      blueQueue.enqueue(123);
+
+      blueQueue.run();
+
+    </script>
+  </body>
+</html>
