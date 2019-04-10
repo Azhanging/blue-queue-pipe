@@ -32,6 +32,14 @@ BlueQueuePipe.prototype = {
     this.ran = opts.ran;
   },
 
+  setEnqueued: function (enqueue) {
+    this.options.enqueued = enqueue;
+  },
+
+  setDequeued: function (dequeue) {
+    this.options.dequeued = dequeue;
+  },
+
   enqueue: function (obj) {
     this.hook(this, this.enqueued, [this.queue.push(obj)]);
   },
