@@ -1,12 +1,12 @@
-# blue-queue
+# blue-queue-pipe
 
 队列处理
 
-### BlueQueue
+### BlueQueuePipe
 
 大致的使用预览
 ```javascript
-    var blueQueue = new BlueQueue({
+    var blueQueue = new BlueQueuePipe({
       data:{},
       methods:{
         someMethod:function(){
