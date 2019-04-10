@@ -1,18 +1,18 @@
 /*
-* blue-queue.js v1.0.0
+* blue-queue-pipe.js v1.0.0
 * (c) 2016-2020 Blue
 * Released under the MIT License.
-* https://github.com/azhanging/blue-queue
+* https://github.com/azhanging/blue-queue-pipe
 * time:2019-4-9 00:43:15
 */
 
-function BlueQueue(opts) {
+function BlueQueuePipe(opts) {
   this._init(opts);
 }
 
-BlueQueue.prototype = {
+BlueQueuePipe.prototype = {
 
-  constructor: BlueQueue,
+  constructor: BlueQueuePipe,
 
   _init: function (opts) {
     if (!opts) opts = {};
@@ -85,6 +85,6 @@ BlueQueue.prototype = {
   }
 };
 
-module.exports = BlueQueue;
+module.exports = BlueQueuePipe;
 
 

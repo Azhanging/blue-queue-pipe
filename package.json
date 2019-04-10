@@ -1,6 +1,6 @@
 {
-  "name": "blue-queue",
-  "version": "1.0.0",
+  "name": "blue-queue-pipe",
+  "version": "1.0.1",
   "description": "队列处理",
   "main": "src/blue-queue.js",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azhanging/blue-queue.git"
+    "url": "git+https://github.com/Azhanging/blue-queue-pipe.git"
   },
   "author": "Blue",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Azhanging/blue-queue/issues"
+    "url": "https://github.com/Azhanging/blue-queue-pipe/issues"
   },
-  "homepage": "https://github.com/Azhanging/blue-queue#readme"
+  "homepage": "https://github.com/Azhanging/blue-queue-pipe#readme"
 }
