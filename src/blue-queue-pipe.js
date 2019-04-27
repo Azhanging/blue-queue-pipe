@@ -1,11 +1,3 @@
-/*
-* blue-queue-pipe.js v1.0.0
-* (c) 2016-2020 Blue
-* Released under the MIT License.
-* https://github.com/azhanging/blue-queue-pipe
-* time:2019-4-9 00:43:15
-*/
-
 function BlueQueuePipe(opts) {
   this._init(opts);
 }
