@@ -14,8 +14,6 @@ class BlueQueuePipe {
     this.queue = [];
     //数据
     this.data = opts.data || {};
-    //方法
-    this.methods = opts.methods || {};
   }
 
   enqueue(obj) {
@@ -47,19 +45,21 @@ class BlueQueuePipe {
 
   //执行队列
   run() {
+    const opts = this.options;
     while (!this.isEmpty()) {
       const dequeue = this.dequeue();
       //如果队列项是function，执行
       if (typeof dequeue === 'function') {
-        this.hook(this, this.options.ran, [dequeue({
+        this.hook(this, opts.running, [dequeue({
           queueCtx: this,
           args: arguments
         })]);
       } else {
         //非function给dequeued执行
-        this.hook(this, this.options.ran, [dequeue]);
+        this.hook(this, opts.running, [dequeue]);
       }
     }
+    this.hook(this, opts.ran);
   }
 
   //使用钩子
@@ -70,7 +70,10 @@ class BlueQueuePipe {
 
   //使用方法
   useMethod(name, args) {
-    this.hook(this, this.methods[name], args || []);
+    const opts = this.options;
+    if (!opts.methods) return;
+    this.hook(this, opts.methods[name], args || []);
   }
 }
+
 export default BlueQueuePipe;

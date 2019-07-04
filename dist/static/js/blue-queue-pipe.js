@@ -1,9 +1,9 @@
 /*!
- * blue-queue-pipe.js 1.0.3
+ * blue-queue-pipe.js 1.0.6
  * (c) 2016-2020 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Thu, 25 Apr 2019 08:51:57 GMT
+ * time:Fri, 28 Jun 2019 06:53:36 GMT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -110,8 +110,6 @@ var BlueQueuePipe = function () {
       this.queue = [];
       //数据
       this.data = opts.data || {};
-      //方法
-      this.methods = opts.methods || {};
     }
   }, {
     key: 'enqueue',
@@ -154,19 +152,21 @@ var BlueQueuePipe = function () {
   }, {
     key: 'run',
     value: function run() {
+      var opts = this.options;
       while (!this.isEmpty()) {
         var dequeue = this.dequeue();
         //如果队列项是function，执行
         if (typeof dequeue === 'function') {
-          this.hook(this, this.options.ran, [dequeue({
+          this.hook(this, opts.running, [dequeue({
             queueCtx: this,
             args: arguments
           })]);
         } else {
           //非function给dequeued执行
-          this.hook(this, this.options.ran, [dequeue]);
+          this.hook(this, opts.running, [dequeue]);
         }
       }
+      this.hook(this, opts.ran);
     }
 
     //使用钩子
@@ -182,7 +182,9 @@ var BlueQueuePipe = function () {
   }, {
     key: 'useMethod',
     value: function useMethod(name, args) {
-      this.hook(this, this.methods[name], args || []);
+      var opts = this.options;
+      if (!opts.methods) return;
+      this.hook(this, opts.methods[name], args || []);
     }
   }]);
 

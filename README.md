@@ -59,7 +59,9 @@ enqueued: 每次enqueue后调用的钩子，this指向队列实例，
 dequeued: 每次dequeue后调用的钩子，this指向队列实例，
 带入的参数为dequeue的值
 
-ran: 在dequeue run 后执行
+running: 在dequeue run后执行
+
+ran: 在run后执行
 
 
 #### prototype methods

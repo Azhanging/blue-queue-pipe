@@ -1,6 +1,6 @@
 {
   "name": "blue-queue-pipe",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "blue-queue-pipe",
   "main": "./index.js",
   "scripts": {
