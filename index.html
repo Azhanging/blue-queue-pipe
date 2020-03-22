@@ -19,9 +19,16 @@
           }
         },
         enqueued: function () {
+          console.log(`enqueued`);
           if (this.data.status === true) {
             this.run();
           }
+        },
+        dequeued: function () {
+          console.log(`dequeued`);
+        },
+        running: function () {
+
         }
       });
 

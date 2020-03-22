@@ -1,1 +1,1 @@
-module.exports = require('./dist/static/js/blue-queue-pipe');
+module.exports = require('./dist/blue-queue-pipe');

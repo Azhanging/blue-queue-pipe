@@ -61,26 +61,26 @@ dequeued: 每次dequeue后调用的钩子，this指向队列实例，
 
 running: 在dequeue run后执行
 
-ran: 在run后执行
+ran: run结束后执行：running -> dequeued(n) -> ran
 
 
 #### prototype methods
 _init(opts): 初始化方法
 
-enqueue(obj): 加入队列
+enqueue(any):void 加入队列
 
-dequeue(): 离开队列，返回离开队列的obj
+dequeue():any 离开队列，返回离开队列的obj
 
-isEmpty(): 检查当前队列是否为空
+isEmpty():boolean 检查当前队列是否为空
 
-clear(): 清空队列
+clear():void 清空队列
 
-first(): 获取到第一个队列
+first():any 获取到第一个队列
 
-last(): 获取到最后一个队列
+last():any 获取到最后一个队列
 
-run(arguments): 执行队列，arguments会被带入到function类型的dequeue中执行
+run(arguments):void 执行队列，arguments会被带入到function类型的dequeue中执行
 
-hook(ctx,fn,args[]):执行fn使用
+hook(ctx,fn,args[]):any 执行fn使用
 
-useMethod(methodName,args[]):使用某一个在methods定义的方法
+useMethod(methodName,args[]):any 使用某一个在methods定义的方法
