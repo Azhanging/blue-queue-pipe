@@ -3,7 +3,7 @@
   "version": "1.0.8",
   "description": "blue-queue-pipe",
   "main": "./index.js",
-  "types": "./index.d.ts",
+  "types": "./types/index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --config blue-build-library/dev.js",
     "build": "node  blue-build-library/build.js"

@@ -4,7 +4,7 @@
  * (c) 2016-2020 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Fri, 27 Mar 2020 07:24:02 GMT
+ * time:Fri, 27 Mar 2020 10:12:03 GMT
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
