@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="641bef9c-7ab5-498e-a7b1-7a655fa7a3f4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/static/js/blue-queue-pipe.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blue-queue-pipe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="641bef9c-7ab5-498e-a7b1-7a655fa7a3f4" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +26,11 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
   <component name="ProjectId" id="1ZT2KS0ijI0uw406MwS0eDJorT3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -53,8 +47,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
-    <property name="ts.external.directory.path" value="D:\Program Files\JetBrains\WebStorm 2019.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="ts.external.directory.path" value="E:\achang\github\blue-queue-pipe\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -63,7 +57,10 @@
       <recent name="D:\achang\blue-queue" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="Node.js.test.js">
+    <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="test.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -84,9 +81,14 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Node.js.test.js" />
+      <item itemvalue="npm.build" />
+      <item itemvalue="npm.dev" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
+        <item itemvalue="Node.js.test.js" />
         <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
@@ -109,6 +111,8 @@
       <workItem from="1561702901633" duration="2566000" />
       <workItem from="1584848699708" duration="7000000" />
       <workItem from="1584882730656" duration="3774000" />
+      <workItem from="1585293556160" duration="2918000" />
+      <workItem from="1585302422605" duration="54000" />
     </task>
     <servers />
   </component>

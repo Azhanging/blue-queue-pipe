@@ -1,10 +1,10 @@
 /*!
  * 
- * blue-queue-pipe.js 1.0.7
+ * blue-queue-pipe.js 1.0.8
  * (c) 2016-2020 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Sun, 22 Mar 2020 13:13:49 GMT
+ * time:Fri, 27 Mar 2020 07:24:02 GMT
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {

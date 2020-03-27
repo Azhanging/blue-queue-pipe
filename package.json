@@ -1,8 +1,9 @@
 {
   "name": "blue-queue-pipe",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "blue-queue-pipe",
   "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --config blue-build-library/dev.js",
     "build": "node  blue-build-library/build.js"
@@ -30,12 +31,6 @@
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.1.2"
   },
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md",
-    "index.js"
-  ],
   "repositories": [
     "https://github.com/Azhanging/blue-queue-pipe"
   ],
