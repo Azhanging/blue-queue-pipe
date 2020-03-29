@@ -1,15 +1,15 @@
 interface QueuePipeOpts {
-    enqueued: Function;
-    dequeued: Function;
-    running: Function;
-    ran: Function;
-    methods: any;
+    enqueued?: Function;
+    dequeued?: Function;
+    running?: Function;
+    ran?: Function;
+    methods?: any;
 }
 declare class BlueQueuePipe {
     options: QueuePipeOpts;
     queue: any[];
     data: any;
-    constructor(opts: any);
+    constructor(opts?: QueuePipeOpts);
     _init(opts: any): void;
     enqueue(obj: any): void;
     dequeue(): any;

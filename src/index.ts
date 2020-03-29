@@ -3,11 +3,11 @@
 * */
 
 interface QueuePipeOpts {
-	enqueued: Function;
-	dequeued: Function;
-	running: Function;
-	ran: Function;
-	methods: any;
+	enqueued?: Function;
+	dequeued?: Function;
+	running?: Function;
+	ran?: Function;
+	methods?: any;
 }
 
 
@@ -16,12 +16,11 @@ class BlueQueuePipe {
 	queue: any[];
 	data: any;
 
-	constructor ( opts: any ) {
+	constructor ( opts: QueuePipeOpts = {} ) {
 		this._init(opts);
 	}
 
 	_init ( opts: any ): void {
-		if (!opts) opts = {};
 		//配置
 		this.options = opts;
 		//队列
@@ -31,13 +30,13 @@ class BlueQueuePipe {
 	}
 
 	enqueue ( obj ): void {
-		this.hook(this, this.options.enqueued, [ this.queue.push(obj) ]);
+		this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
 	}
 
 	dequeue (): any {
-		const {queue, options} = this;
+		const { queue, options } = this;
 		const dequeue = queue.shift();
-		this.hook(this, options.dequeued, [ dequeue ]);
+		this.hook(this, options.dequeued, [dequeue]);
 		return dequeue;
 	}
 
@@ -64,12 +63,12 @@ class BlueQueuePipe {
 		while (!this.isEmpty()) {
 			const dequeue = this.dequeue();
 			//如果队列项是function，执行
-			this.hook(this, opts.running, [ (() => {
+			this.hook(this, opts.running, [(() => {
 				if (typeof dequeue === 'function') {
 					return dequeue.apply(this, args);
 				}
 				return dequeue
-			})() ]);
+			})()]);
 		}
 		this.hook(this, opts.ran);
 	}

@@ -1,10 +1,10 @@
 /*!
  * 
- * blue-queue-pipe.js 1.0.8
+ * blue-queue-pipe.js 1.0.9
  * (c) 2016-2020 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Fri, 27 Mar 2020 10:12:03 GMT
+ * time:Sun, 29 Mar 2020 04:46:29 GMT
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -105,119 +105,79 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*
 * 队列管道
 * */
-(function (factory) {
-    if ( true && typeof module.exports === "object") {
-        var v = factory(__webpack_require__(1), exports);
-        if (v !== undefined) module.exports = v;
+class BlueQueuePipe {
+    constructor(opts = {}) {
+        this._init(opts);
     }
-    else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    _init(opts) {
+        //配置
+        this.options = opts;
+        //队列
+        this.queue = [];
+        //数据
+        this.data = opts.data || {};
     }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var BlueQueuePipe = /** @class */ (function () {
-        function BlueQueuePipe(opts) {
-            this._init(opts);
+    enqueue(obj) {
+        this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
+    }
+    dequeue() {
+        const { queue, options } = this;
+        const dequeue = queue.shift();
+        this.hook(this, options.dequeued, [dequeue]);
+        return dequeue;
+    }
+    isEmpty() {
+        return this.queue.length === 0;
+    }
+    clear() {
+        this.queue = [];
+    }
+    first() {
+        return this.queue[0];
+    }
+    //获取最后一个队列
+    last() {
+        return this.queue[this.queue.length - 1];
+    }
+    //执行队列
+    run(...args) {
+        const opts = this.options;
+        while (!this.isEmpty()) {
+            const dequeue = this.dequeue();
+            //如果队列项是function，执行
+            this.hook(this, opts.running, [(() => {
+                    if (typeof dequeue === 'function') {
+                        return dequeue.apply(this, args);
+                    }
+                    return dequeue;
+                })()]);
         }
-        BlueQueuePipe.prototype._init = function (opts) {
-            if (!opts)
-                opts = {};
-            //配置
-            this.options = opts;
-            //队列
-            this.queue = [];
-            //数据
-            this.data = opts.data || {};
-        };
-        BlueQueuePipe.prototype.enqueue = function (obj) {
-            this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
-        };
-        BlueQueuePipe.prototype.dequeue = function () {
-            var _a = this, queue = _a.queue, options = _a.options;
-            var dequeue = queue.shift();
-            this.hook(this, options.dequeued, [dequeue]);
-            return dequeue;
-        };
-        BlueQueuePipe.prototype.isEmpty = function () {
-            return this.queue.length === 0;
-        };
-        BlueQueuePipe.prototype.clear = function () {
-            this.queue = [];
-        };
-        BlueQueuePipe.prototype.first = function () {
-            return this.queue[0];
-        };
-        //获取最后一个队列
-        BlueQueuePipe.prototype.last = function () {
-            return this.queue[this.queue.length - 1];
-        };
-        //执行队列
-        BlueQueuePipe.prototype.run = function () {
-            var _this = this;
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            var opts = this.options;
-            var _loop_1 = function () {
-                var dequeue = this_1.dequeue();
-                //如果队列项是function，执行
-                this_1.hook(this_1, opts.running, [(function () {
-                        if (typeof dequeue === 'function') {
-                            return dequeue.apply(_this, args);
-                        }
-                        return dequeue;
-                    })()]);
-            };
-            var this_1 = this;
-            while (!this.isEmpty()) {
-                _loop_1();
-            }
-            this.hook(this, opts.ran);
-        };
-        //执行function
-        BlueQueuePipe.prototype.hook = function (context, cb, args) {
-            if (args === void 0) { args = []; }
-            if (typeof cb === 'function') {
-                return cb.apply(context, args);
-            }
-            return cb;
-        };
-        //使用方法
-        BlueQueuePipe.prototype.useMethod = function (name, args) {
-            var opts = this.options;
-            if (!opts.methods)
-                return;
-            return this.hook(this, opts.methods[name], args || []);
-        };
-        return BlueQueuePipe;
-    }());
-    exports.default = BlueQueuePipe;
-});
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
+        this.hook(this, opts.ran);
+    }
+    //执行function
+    hook(context, cb, args = []) {
+        if (typeof cb === 'function') {
+            return cb.apply(context, args);
+        }
+        return cb;
+    }
+    //使用方法
+    useMethod(name, args) {
+        const opts = this.options;
+        if (!opts.methods)
+            return;
+        return this.hook(this, opts.methods[name], args || []);
+    }
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 1;
+/* harmony default export */ __webpack_exports__["default"] = (BlueQueuePipe);
+
 
 /***/ })
 /******/ ])["default"];
