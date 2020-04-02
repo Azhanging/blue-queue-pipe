@@ -1,10 +1,10 @@
 /*!
  * 
- * blue-queue-pipe.js 1.0.9
+ * blue-queue-pipe.js 1.1.0
  * (c) 2016-2020 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Sun, 29 Mar 2020 04:46:29 GMT
+ * time:Thu, 02 Apr 2020 02:01:03 GMT
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -112,70 +112,82 @@ __webpack_require__.r(__webpack_exports__);
 /*
 * 队列管道
 * */
-class BlueQueuePipe {
-    constructor(opts = {}) {
+var BlueQueuePipe = /** @class */ (function () {
+    function BlueQueuePipe(opts) {
+        if (opts === void 0) { opts = {}; }
         this._init(opts);
     }
-    _init(opts) {
+    BlueQueuePipe.prototype._init = function (opts) {
         //配置
         this.options = opts;
         //队列
         this.queue = [];
         //数据
         this.data = opts.data || {};
-    }
-    enqueue(obj) {
+    };
+    BlueQueuePipe.prototype.enqueue = function (obj) {
         this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
-    }
-    dequeue() {
-        const { queue, options } = this;
-        const dequeue = queue.shift();
+    };
+    BlueQueuePipe.prototype.dequeue = function () {
+        var _a = this, queue = _a.queue, options = _a.options;
+        var dequeue = queue.shift();
         this.hook(this, options.dequeued, [dequeue]);
         return dequeue;
-    }
-    isEmpty() {
+    };
+    BlueQueuePipe.prototype.isEmpty = function () {
         return this.queue.length === 0;
-    }
-    clear() {
+    };
+    BlueQueuePipe.prototype.clear = function () {
         this.queue = [];
-    }
-    first() {
+    };
+    BlueQueuePipe.prototype.first = function () {
         return this.queue[0];
-    }
+    };
     //获取最后一个队列
-    last() {
+    BlueQueuePipe.prototype.last = function () {
         return this.queue[this.queue.length - 1];
-    }
+    };
     //执行队列
-    run(...args) {
-        const opts = this.options;
-        while (!this.isEmpty()) {
-            const dequeue = this.dequeue();
+    BlueQueuePipe.prototype.run = function () {
+        var _this = this;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var opts = this.options;
+        var _loop_1 = function () {
+            var dequeue = this_1.dequeue();
             //如果队列项是function，执行
-            this.hook(this, opts.running, [(() => {
+            this_1.hook(this_1, opts.running, [(function () {
                     if (typeof dequeue === 'function') {
-                        return dequeue.apply(this, args);
+                        return dequeue.apply(_this, args);
                     }
                     return dequeue;
                 })()]);
+        };
+        var this_1 = this;
+        while (!this.isEmpty()) {
+            _loop_1();
         }
         this.hook(this, opts.ran);
-    }
+    };
     //执行function
-    hook(context, cb, args = []) {
+    BlueQueuePipe.prototype.hook = function (context, cb, args) {
+        if (args === void 0) { args = []; }
         if (typeof cb === 'function') {
             return cb.apply(context, args);
         }
         return cb;
-    }
+    };
     //使用方法
-    useMethod(name, args) {
-        const opts = this.options;
+    BlueQueuePipe.prototype.useMethod = function (name, args) {
+        var opts = this.options;
         if (!opts.methods)
             return;
         return this.hook(this, opts.methods[name], args || []);
-    }
-}
+    };
+    return BlueQueuePipe;
+}());
 /* harmony default export */ __webpack_exports__["default"] = (BlueQueuePipe);
 
 
