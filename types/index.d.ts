@@ -1,16 +1,19 @@
 interface QueuePipeOpts {
+    data?: any;
     enqueued?: Function;
     dequeued?: Function;
     running?: Function;
     ran?: Function;
-    methods?: any;
+    methods?: {
+        [methodName: string]: Function;
+    };
 }
 declare class BlueQueuePipe {
     options: QueuePipeOpts;
     queue: any[];
-    data: any;
-    constructor(opts?: QueuePipeOpts);
-    _init(opts: any): void;
+    data?: any;
+    constructor(opts: QueuePipeOpts);
+    _init(opts: QueuePipeOpts): void;
     enqueue(obj: any): void;
     dequeue(): any;
     isEmpty(): boolean;
@@ -19,6 +22,6 @@ declare class BlueQueuePipe {
     last(): any;
     run(...args: any[]): void;
     hook(context: any, cb: any, args?: any[]): any;
-    useMethod(name: string, args: any[]): any;
+    useMethod(name: string, args?: any[]): any;
 }
 export default BlueQueuePipe;

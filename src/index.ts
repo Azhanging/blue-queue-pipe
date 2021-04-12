@@ -3,24 +3,34 @@
 * */
 
 interface QueuePipeOpts {
+	//数据
+	data?: any;
+	//写入队里后调用
 	enqueued?: Function;
+	//离开队列后调用
 	dequeued?: Function;
+	//run的时候调用
 	running?: Function;
+	//run结束后调用
 	ran?: Function;
-	methods?: any;
+	//定义方法
+	methods?: {
+		[ methodName: string ]: Function;
+	};
 }
 
 
 class BlueQueuePipe {
 	options: QueuePipeOpts;
-	queue: any[];
-	data: any;
+	queue: any[] = [];
+	data?: any = {};
 
-	constructor ( opts: QueuePipeOpts = {} ) {
+	constructor ( opts: QueuePipeOpts ) {
 		this._init(opts);
 	}
 
-	_init ( opts: any ): void {
+	//初始化配置
+	_init ( opts: QueuePipeOpts ): void {
 		//配置
 		this.options = opts;
 		//队列
@@ -29,25 +39,30 @@ class BlueQueuePipe {
 		this.data = opts.data || {};
 	}
 
+	//进入队列
 	enqueue ( obj ): void {
 		this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
 	}
 
+	//离开队列
 	dequeue (): any {
-		const { queue, options } = this;
+		const {queue, options} = this;
 		const dequeue = queue.shift();
 		this.hook(this, options.dequeued, [dequeue]);
 		return dequeue;
 	}
 
+	//当前是否为空
 	isEmpty (): boolean {
 		return this.queue.length === 0;
 	}
 
+	//清空队列
 	clear (): void {
 		this.queue = [];
 	}
 
+	//第一位个队列
 	first (): any {
 		return this.queue[ 0 ];
 	}
@@ -64,10 +79,8 @@ class BlueQueuePipe {
 			const dequeue = this.dequeue();
 			//如果队列项是function，执行
 			this.hook(this, opts.running, [(() => {
-				if (typeof dequeue === 'function') {
-					return dequeue.apply(this, args);
-				}
-				return dequeue
+				if (typeof dequeue === 'function') return dequeue.apply(this, args);
+				return dequeue;
 			})()]);
 		}
 		this.hook(this, opts.ran);
@@ -82,7 +95,7 @@ class BlueQueuePipe {
 	}
 
 	//使用方法
-	useMethod ( name: string, args: any[] ): any {
+	useMethod ( name: string, args?: any[] ): any {
 		const opts = this.options;
 		if (!opts.methods) return;
 		return this.hook(this, opts.methods[ name ], args || []);

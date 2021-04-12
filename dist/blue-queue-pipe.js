@@ -1,10 +1,10 @@
 /*!
  * 
- * blue-queue-pipe.js 1.1.1
- * (c) 2016-2020 Blue
+ * blue-queue-pipe.js 1.1.2
+ * (c) 2016-2021 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Fri, 03 Apr 2020 08:00:50 GMT
+ * time:Mon, 12 Apr 2021 15:51:15 GMT
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -114,9 +114,11 @@ __webpack_require__.r(__webpack_exports__);
 * */
 var BlueQueuePipe = /** @class */ (function () {
     function BlueQueuePipe(opts) {
-        if (opts === void 0) { opts = {}; }
+        this.queue = [];
+        this.data = {};
         this._init(opts);
     }
+    //初始化配置
     BlueQueuePipe.prototype._init = function (opts) {
         //配置
         this.options = opts;
@@ -125,21 +127,26 @@ var BlueQueuePipe = /** @class */ (function () {
         //数据
         this.data = opts.data || {};
     };
+    //进入队列
     BlueQueuePipe.prototype.enqueue = function (obj) {
         this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
     };
+    //离开队列
     BlueQueuePipe.prototype.dequeue = function () {
         var _a = this, queue = _a.queue, options = _a.options;
         var dequeue = queue.shift();
         this.hook(this, options.dequeued, [dequeue]);
         return dequeue;
     };
+    //当前是否为空
     BlueQueuePipe.prototype.isEmpty = function () {
         return this.queue.length === 0;
     };
+    //清空队列
     BlueQueuePipe.prototype.clear = function () {
         this.queue = [];
     };
+    //第一位个队列
     BlueQueuePipe.prototype.first = function () {
         return this.queue[0];
     };
@@ -159,9 +166,8 @@ var BlueQueuePipe = /** @class */ (function () {
             var dequeue = this_1.dequeue();
             //如果队列项是function，执行
             this_1.hook(this_1, opts.running, [(function () {
-                    if (typeof dequeue === 'function') {
+                    if (typeof dequeue === 'function')
                         return dequeue.apply(_this, args);
-                    }
                     return dequeue;
                 })()]);
         };

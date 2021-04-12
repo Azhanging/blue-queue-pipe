@@ -13,7 +13,7 @@ module.exports = {
   library: {
     name,
     github: `https://github.com/azhanging/${name}`,
-    date: `2016-2020`,
+    date: `2016-${new Date().getFullYear()}`,
     version: package.version,
     author: package.author
   },
