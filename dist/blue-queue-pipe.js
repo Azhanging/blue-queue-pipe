@@ -1,10 +1,10 @@
 /*!
  * 
- * blue-queue-pipe.js 1.1.2
+ * blue-queue-pipe.js 1.1.3
  * (c) 2016-2021 Blue
  * Released under the MIT License.
  * https://github.com/azhanging/blue-queue-pipe
- * time:Mon, 12 Apr 2021 15:51:15 GMT
+ * time:Wed, 14 Apr 2021 15:44:40 GMT
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -112,21 +112,24 @@ __webpack_require__.r(__webpack_exports__);
 /*
 * 队列管道
 * */
+//初始化配置
+function init(opts) {
+    if (opts === void 0) { opts = {}; }
+    //配置
+    this.options = opts;
+    //队列
+    this.queue = [];
+    //数据
+    this.data = this.hook(this, opts.data) || {};
+}
 var BlueQueuePipe = /** @class */ (function () {
     function BlueQueuePipe(opts) {
-        this.queue = [];
-        this.data = {};
-        this._init(opts);
-    }
-    //初始化配置
-    BlueQueuePipe.prototype._init = function (opts) {
-        //配置
-        this.options = opts;
-        //队列
+        //队列数组
         this.queue = [];
         //数据
-        this.data = opts.data || {};
-    };
+        this.data = {};
+        init.call(this, opts);
+    }
     //进入队列
     BlueQueuePipe.prototype.enqueue = function (obj) {
         this.hook(this, this.options.enqueued, [this.queue.push(obj)]);
@@ -187,10 +190,11 @@ var BlueQueuePipe = /** @class */ (function () {
     };
     //使用方法
     BlueQueuePipe.prototype.useMethod = function (name, args) {
+        if (args === void 0) { args = []; }
         var opts = this.options;
         if (!opts.methods)
             return;
-        return this.hook(this, opts.methods[name], args || []);
+        return this.hook(this, opts.methods[name], args);
     };
     return BlueQueuePipe;
 }());

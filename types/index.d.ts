@@ -1,19 +1,21 @@
+interface TConstructorFn {
+    (this: BlueQueuePipe): any;
+}
 interface QueuePipeOpts {
     data?: any;
-    enqueued?: Function;
-    dequeued?: Function;
-    running?: Function;
-    ran?: Function;
+    enqueued?: TConstructorFn;
+    dequeued?: TConstructorFn;
+    running?: TConstructorFn;
+    ran?: TConstructorFn;
     methods?: {
-        [methodName: string]: Function;
+        [methodName: string]: TConstructorFn;
     };
 }
 declare class BlueQueuePipe {
-    options: QueuePipeOpts;
+    options?: QueuePipeOpts;
     queue: any[];
     data?: any;
-    constructor(opts: QueuePipeOpts);
-    _init(opts: QueuePipeOpts): void;
+    constructor(opts?: QueuePipeOpts);
     enqueue(obj: any): void;
     dequeue(): any;
     isEmpty(): boolean;

@@ -2,41 +2,52 @@
 * 队列管道
 * */
 
+//构造者函数，this指向实例
+interface TConstructorFn {
+	( this: BlueQueuePipe ): any;
+}
+
+/*
+* 队列参数
+* */
 interface QueuePipeOpts {
 	//数据
 	data?: any;
 	//写入队里后调用
-	enqueued?: Function;
+	enqueued?: TConstructorFn;
 	//离开队列后调用
-	dequeued?: Function;
+	dequeued?: TConstructorFn;
 	//run的时候调用
-	running?: Function;
+	running?: TConstructorFn;
 	//run结束后调用
-	ran?: Function;
+	ran?: TConstructorFn;
 	//定义方法
 	methods?: {
-		[ methodName: string ]: Function;
+		[ methodName: string ]: TConstructorFn;
 	};
+}
+
+//初始化配置
+function init ( this: BlueQueuePipe, opts: QueuePipeOpts = {} ): void {
+	//配置
+	this.options = opts;
+	//队列
+	this.queue = [];
+	//数据
+	this.data = this.hook(this, opts.data) || {};
 }
 
 
 class BlueQueuePipe {
-	options: QueuePipeOpts;
+	//选项
+	options?: QueuePipeOpts;
+	//队列数组
 	queue: any[] = [];
+	//数据
 	data?: any = {};
 
-	constructor ( opts: QueuePipeOpts ) {
-		this._init(opts);
-	}
-
-	//初始化配置
-	_init ( opts: QueuePipeOpts ): void {
-		//配置
-		this.options = opts;
-		//队列
-		this.queue = [];
-		//数据
-		this.data = opts.data || {};
+	constructor ( opts?: QueuePipeOpts ) {
+		init.call(this, opts);
 	}
 
 	//进入队列
@@ -95,11 +106,12 @@ class BlueQueuePipe {
 	}
 
 	//使用方法
-	useMethod ( name: string, args?: any[] ): any {
+	useMethod ( name: string, args: any[] = [] ): any {
 		const opts = this.options;
 		if (!opts.methods) return;
-		return this.hook(this, opts.methods[ name ], args || []);
+		return this.hook(this, opts.methods[ name ], args);
 	}
 }
+
 
 export default BlueQueuePipe;
