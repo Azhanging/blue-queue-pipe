@@ -39,7 +39,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blue-uni-app/apps/blue-uni-app-tmpl/node_modules/@dcloudio/types/uni-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blue-utils" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
@@ -119,6 +119,9 @@
       <workItem from="1585907052522" duration="1327000" />
       <workItem from="1618235721726" duration="5864000" />
       <workItem from="1618404316957" duration="6411000" />
+      <workItem from="1618830554832" duration="592000" />
+      <workItem from="1618836996808" duration="853000" />
+      <workItem from="1618928512969" duration="4515000" />
     </task>
     <servers />
   </component>
@@ -126,10 +129,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="645" y="275" key="FileChooserDialogImpl" timestamp="1618413547437">
+    <state x="645" y="275" key="FileChooserDialogImpl" timestamp="1618930604534">
       <screen x="0" y="0" width="1728" height="1040" />
     </state>
-    <state x="645" y="275" key="FileChooserDialogImpl/0.0.1728.1040@0.0.1728.1040" timestamp="1618413547437" />
+    <state x="645" y="275" key="FileChooserDialogImpl/0.0.1728.1040@0.0.1728.1040" timestamp="1618930604534" />
     <state width="1707" height="274" key="GridCell.Tab.0.bottom" timestamp="1618415084792">
       <screen x="0" y="0" width="1728" height="1040" />
     </state>

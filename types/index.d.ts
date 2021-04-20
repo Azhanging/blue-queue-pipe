@@ -1,5 +1,5 @@
 interface TConstructorFn {
-    (this: BlueQueuePipe): any;
+    (this: BlueQueuePipe, ...args: any[]): any;
 }
 interface QueuePipeOpts {
     data?: any;

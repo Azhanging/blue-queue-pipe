@@ -4,7 +4,7 @@
 
 //构造者函数，this指向实例
 interface TConstructorFn {
-	( this: BlueQueuePipe ): any;
+	( this: BlueQueuePipe, ...args: any[] ): any;
 }
 
 /*
@@ -112,6 +112,5 @@ class BlueQueuePipe {
 		return this.hook(this, opts.methods[ name ], args);
 	}
 }
-
 
 export default BlueQueuePipe;
